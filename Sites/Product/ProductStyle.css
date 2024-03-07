@@ -1,0 +1,137 @@
+
+.containerProduct {
+  margin: 100px;
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.contentProduct {
+  display: grid;
+  grid-template-columns: 700px 400px;
+  border: 1px solid gainsboro;
+  border-radius: 5px;
+}
+
+.imageProductBig {
+  height: 400px;
+  grid-row: 2 ;
+  grid-column: 1;
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin: 30px;
+}
+
+.descriptionProdcut{
+  grid-row: 2;
+  grid-column: 2 / 3;
+  margin: 30px;
+
+}
+
+.nameProductBig{
+  margin: 30px;
+  font-weight: bold;
+  color: #7c3479;
+  font-size: 17px;
+}
+
+.slider{
+  grid-row: 3;
+  grid-column: 1 / 2;
+  display: grid;
+  grid-template-columns: repeat( 5, 110px) ;
+  gap: 8px;
+  margin-left: 20px;
+}
+
+.imageSlider {
+  height: 100px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin: 5px;
+  border: 1px solid gainsboro;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.contentAddCarBig{
+  grid-row: 3;
+  grid-column: 2 / 3;
+  display: flex;
+  justify-content: center;
+}
+
+.available{
+  margin-top: 20px;
+  color: #7c3479;
+}
+
+.price{
+  margin-top: 50px;
+  color: #7c3479;
+  font-size: 20px;
+}
+
+.lefthome{
+  color: #7c3479;
+  cursor: pointer;
+  margin-left: 30px;
+  margin-top: 50px;
+  font-size: 18px;
+}
+
+
+
+/* .slider {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+} */
+
+
+
+/* @media screen and (max-width: 1300px) {
+  .products {
+    grid-template-columns: repeat(3, 300px);
+  }
+} */
+
+@media screen and (max-width: 1150px) {
+  .contentProduct {
+    grid-template-columns: 500px;
+
+  }
+
+  .descriptionProdcut{
+    grid-row: 4;
+    grid-column: 1 / 2;
+    margin: 30px;
+  
+  }
+
+  .contentAddCarBig{
+    grid-row: 5;
+    grid-column: 1 / 2;
+    display: flex;
+    justify-content: center;
+  }
+
+  .slider{
+   
+    grid-template-columns: repeat( 4, 120px) ;
+    gap: 2px;
+  }
+  
+}
+/* @media screen and (max-width: 650px) {
+  .contentProduct {
+    grid-template-columns: repeat(1, 300px);
+  }
+} */
+ 
+ 
+

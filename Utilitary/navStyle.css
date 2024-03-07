@@ -1,0 +1,137 @@
+ul {
+  display: grid;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-image: linear-gradient(to right, #7c3479, #784892, #6f5ba8, #616ebb, #5080cb);
+  height: 100px;
+
+}
+
+.options {
+  display: flex;
+  grid-column: 3 / 4;
+  align-items: center;
+  justify-content: end;
+  margin-right: 50px;
+
+}
+
+.search{
+  display: flex;
+  grid-column: 2 / 3;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputSearch{
+  height: 40px;
+  width: 100%;
+  border: 0;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius:5px ;
+  padding-left: 30px;
+  font-family: 'Alegreya Sans SC', sans-serif;
+  font-weight: bold;
+}
+
+.buttonSearch{
+  height: 42px;
+  width: 50px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius:5px ;
+  border: 0;
+  background-color: white;
+}
+.logo{
+  margin-left: 50px;
+  width: 200px; 
+  background-image: sr;
+  height: 100px; 
+  background-image:url(../src/logo_transparent.png);
+  background-size:100%;
+  background-repeat: no-repeat; 
+  background-position: center center;
+  grid-column: 1 / 2;
+}
+
+
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 40px 16px;
+  text-decoration: none;
+}
+
+
+li a:hover {
+  background-color: #616ebb;
+}
+
+@media screen and (max-width: 800px) {
+  .logo{
+    width: 110px;
+    margin-left: 20px;
+  }
+  .options {
+    margin-right: 20px;
+  }
+
+  .inputSearch{
+    height: 30px;
+    padding-left: 30px;
+  }
+
+  .buttonSearch{
+    height: 32px;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .logo{
+    width: 100px;
+    margin-left: 10px;
+  }
+  .options {
+    margin-right: 10px;
+    font-size: 13px;
+  }
+
+}
+
+@media screen and (max-width: 470px) {
+  .logo{
+    justify-self: center;
+    align-self: start;
+    height: 40px;
+    width: 100px;
+    margin-top: 6px;
+    grid-column: 1 ;
+  }
+  .options {
+    grid-column: 2 / 3;
+    grid-row: 1;
+    margin-right: 0px;
+    font-size: 13px;
+  }
+
+  .search{
+    grid-column: 1 / 3;
+    grid-row: 2;
+    height: 30px;
+    margin: 10px;
+    margin-top: 0;
+  }
+
+  li a {
+    padding: 10px 16px;
+  }
+  
+}
