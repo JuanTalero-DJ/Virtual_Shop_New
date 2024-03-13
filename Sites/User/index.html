@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/2943493a50.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="UserStyle.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300&family=Jost:wght@300&family=Roboto:wght@100;300&display=swap"
+      rel="stylesheet"
+    />
+    <title>Nuevo Usuario</title>
+  </head>
+
+  <div class="contenido">
+    <div class="main">
+      <div class="formUser">
+        <h3>Nuevo Usuario</h3>
+        <form method="post" action="newUser.php">
+          <div class="row">
+            <div class="col-md">
+              <div class="form-group">
+                <label for="">Tipo de identificación </label><br />
+                <select name="TipoIdentificacion" required>
+                  <option value="" selected>Seleccione</option>
+                  <option value="NIT">Nit</option>
+                  <option value="CC">Cédula de ciudadania</option>
+                  <option value="CE">Cédula de extrangería</option>
+                  
+                </select>
+                
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="form-group">
+                <label for="">Número de identificación</label><br />
+                <input
+                  name="NumeroIdentificacion"
+                  maxlength="10"
+                  type="text"
+                  placeholder="Número de identificación"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="col-md">
+              <div class="form-group">
+                <label for="">Nombre Completo </label><br />
+                <input
+                  name="Nombre"
+                  type="text"
+                  placeholder="Nombre"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md">
+              <div class="form-group">
+                <label for="">Teléfono 1</label><br />
+                <input
+                  name="Telefono1"
+                  maxlength="10"
+                  type="text"
+                  placeholder="Teléfono 1"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="col-md">
+              <div class="form-group">
+                <label for="">Teléfono 2</label><br />
+                <input
+                  name="Telefono2"
+                  type="text"
+                  placeholder="Teléfono 2"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-md"></div>
+          </div>
+          <div class="row">
+            <div class="col-md">
+              <div class="form-group">
+                <label for="">Dirección</label><br />
+                <input
+                  name="Direccion"
+                  maxlength="10"
+                  type="text"
+                  placeholder="Dirección"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="col-md">
+              <div class="form-group">
+                <label for="">Código Postal </label><br />
+                <input
+                  name="CodigoPostal"
+                  type="number"
+                  placeholder="Código Postal"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-md"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md">
+              <div class="form-group">
+                <label for="">Correo</label><br />
+                <input
+                  name="Correo"
+                  type="email"
+                  placeholder="Email"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="col-md">
+              <div class="form-group">
+                <label for="">Clave</label><br />
+                <input
+                  name="Clave"
+                  type="password"
+                  maxlength="8"
+                  placeholder="Clave"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="col-md">
+              <div class="form-group">
+                <label for="">Confirmar Clave</label><br />
+                <input
+                  name="ConfirmarClave"
+                  type="password"
+                  maxlength="8"
+                  placeholder="Confirmar Clave"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row" style="text-align: end">
+            <div class="col-md">
+              <button
+                class="back"
+                onclick="window.location.href='../../index.html'"
+              >
+                <i class="fa-solid fa-arrow-left"></i> Volver al inicio
+              </button>
+            </div>
+            <div class="col-md">
+              <button class="create"><i class="fa-solid fa-floppy-disk"></i>  Crear </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</html>

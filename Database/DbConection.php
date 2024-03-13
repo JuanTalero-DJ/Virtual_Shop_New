@@ -4,7 +4,7 @@ function conexion()
     $servername = "localhost";
     $username = "root";
     $passw = "";
-    $db = "ventas";
+    $db = "tiendavirtual";
 
     $conn = new mysqli($servername, $username, $passw, $db);
 

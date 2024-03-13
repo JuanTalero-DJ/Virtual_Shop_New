@@ -26,7 +26,7 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
         $cartItem = $cart->get_item($_REQUEST['id']);
         $productID = $cartItem['id'];
         $quantity = $cartItem['qty'];
-        $query= $db->query("SELECT * FROM Producto WHERE ID = ".$productID);
+        $query= $db->query("SELECT * FROM Producto WHERE IdProducto = ".$productID);
         $row = $query->fetch_assoc();
         
         if(intval($quantity) > intval($row['Cantidad'])){
@@ -38,18 +38,6 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
             'qty' => $_REQUEST['qty']
         );
         $updateItem = $cart->update($itemData);
-        
-        // Aquí comienza el código para actualizar la cantidad disponible en la base de datos
-        // if($updateItem) {
-        //     // Obtén los detalles del producto
-        //     $cartItem = $cart->get_item($_REQUEST['id']);
-        //     $productID = $cartItem['id'];
-        //     $quantity = $cartItem['qty'];
-            
-        //     // Actualiza la cantidad disponible en la base de datos
-        //     $db->query("UPDATE products SET Cantidad = Cantidad - $quantity WHERE id = $productID");
-        // }
-        // // Aquí termina el código para actualizar la cantidad disponible
         
         echo $updateItem?'ok':$err;
         die;
@@ -75,7 +63,7 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
             }
         }
         
-        $insertOrder = $db->query("INSERT INTO pedido ( IdCliente,FechaPedido, FechaEntrega,Estado, Total) VALUES ('".date("Y-m-d H:i:s")."', '".$_SESSION['user']['ID']."','1', '".$cart->total()."')");
+        $insertOrder = $db->query("INSERT INTO pedido ( IdCliente,FechaPedido, FechaEntrega,Estado, Total) VALUES ('".$_SESSION['user']['IdCliente']."','".date("Y-m-d H:i:s")."',,'212121121' '1', '".$cart->total()."')");
         
         if($insertOrder){
             $orderID = $db->insert_id;
@@ -88,7 +76,7 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
                 $row = $query->fetch_assoc();
                 $querys .= "INSERT INTO Item_venta (Idventa, Cantidad, IdProducto) VALUES ('".$orderID."', '".$item['qty']."', '".$item['id']."');";
                 $actualAviable = intval($row['Cantidad'])- intval($item['qty']);
-                $querys .="UPDATE Producto SET Cantidad = " . $actualAviable . " WHERE ID = '" . $item['id'] . "';";
+                // $querys .="UPDATE Producto SET Cantidad = " . $actualAviable . " WHERE ID = '" . $item['id'] . "';";
             }
             // insert order items into database and update data
     

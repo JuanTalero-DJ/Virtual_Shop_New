@@ -1,0 +1,83 @@
+body,
+html {
+  margin: 0;
+  font-family: "Alegreya Sans SC", sans-serif;
+  margin-top: 0px;
+}
+
+.limiter {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.contenido {
+  width: 100%;  
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background-image: linear-gradient(to right, #7c3479, #784892, #6f5ba8, #616ebb, #5080cb);
+}
+
+.formUser {
+  width: 950px;
+  height: 600px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 50px 130px 33px 95px;
+}
+
+
+.back{
+  text-align: center;
+  height: 50px;
+  height: 50px;
+  border: 0;
+  color: aliceblue;
+  background-color: #7c3479;
+  padding: 15px 32px;
+  border-radius: 10px;
+  cursor: pointer;
+  flex-basis: content;
+}
+
+
+.back{
+  text-align: center;
+  height: 50px;
+  border: 0;
+  color: aliceblue;
+  background-color: #7c3479;
+  padding: 15px 32px;
+  border-radius: 10px;
+  cursor: pointer;
+  flex-basis: content;
+}
+
+.create{
+  text-align: center;
+  height: 50px;
+  width: 200px;
+  border: 0;
+  color: aliceblue;
+  background-color: #7c3479;
+  padding: 15px 32px;
+  border-radius: 10px;
+  cursor: pointer;
+  flex-basis: content;
+}
