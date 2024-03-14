@@ -8,9 +8,9 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["parametro"])) {
 function getProducts($nombre){
 
 include_once '../../Database/DbConection.php';    
-$sql = "SELECT Id, Nombre, Cantidad, (SELECT Directorio FROM Multimediaproducto where IdProducto = a.Id limit 1)as Directorio , ValorUnitario FROM producto as a
-where nombre like '%$nombre%'
- Order by Id";
+$sql = "SELECT IdProducto, Nombre, Cantidad, (SELECT Url FROM Multimediaproducto where IdProducto = a.IdProducto limit 1)as url , ValorUnitario FROM producto as a
+where Nombre like '%$nombre%'
+ Order by IdProducto";
 $conn = conexion();
 return mysqli_query($conn, $sql);
 }
@@ -37,15 +37,15 @@ function listProduct($nombre){
                 while ($fila = mysqli_fetch_assoc($resultado)) {
                   ?>
         <div class="card">
-            <div class="imageProduct" onclick="window.location.href='../Product/index.php?id=<?php echo $fila['Id'] ?>'"
-                style="background-image: url('<?php echo $fila["Directorio"] ?>');"></div>
-            <div class="nameProduct" onclick="window.location.href='../Product/index.php?id=<?php echo $fila['Id'] ?>'">
+            <div class="imageProduct" onclick="window.location.href='../Product/index.php?id=<?php echo $fila['IdProducto'] ?>'"
+                style="background-image: url('<?php echo $fila["url"] ?>');"></div>
+            <div class="nameProduct" onclick="window.location.href='../Product/index.php?id=<?php echo $fila['IdProducto'] ?>'">
                 <?php echo $fila["Nombre"];?>
             </div>
             <div class="valueProduct">$ <?php echo number_format($fila["ValorUnitario"], 0);?></div>
             <div class="ContentAddCar">
                 <button 
-                    onclick="window.location.href='../CarPay/cartAction.php?action=addToCart&id=<?php echo $fila['Id'] ?>'" 
+                    onclick="window.location.href='../CarPay/cartAction.php?action=addToCart&id=<?php echo $fila['IdProducto'] ?>'" 
                     class="addCar">
                     Añadir al carrito <i class="fa-solid fa-cart-plus"></i>
                 </button>

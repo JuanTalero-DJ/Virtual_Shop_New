@@ -13,9 +13,9 @@ if($cart->total_items() <= 0){
 // set customer ID in session
 $_SESSION['sessCustomerID'] = 1;
 
-$iduser=$_SESSION['user']['ID'];
+$iduser=$_SESSION['user']['IdCliente'];
 // get customer details by session customer ID
-$query = $db->query("SELECT * FROM Usuario WHERE ID = '$iduser'");
+$query = $db->query("SELECT * FROM Cliente WHERE IdCliente = '$iduser'");
 $custRow = $query->fetch_assoc();
 ?>
 <!DOCTYPE html>
@@ -123,14 +123,15 @@ $custRow = $query->fetch_assoc();
         </table>
         <div class="shipAddr">
             <h4>Detalles de envío</h4>
-            <p>Nombre: <?php echo $custRow['Nombre']. " "; echo $custRow['Apellido']; ?></p>
-            <p>Telefono:<?php echo $custRow['Telefono']; ?></p>
+            <p>Nombre: <?php echo $custRow['NombreCliente']?></p>
+            <p>Teléfono 1:<?php echo $custRow['NumTelefonico1']; ?></p>
+            <p>Teléfono 2:<?php echo $custRow['NumTelefonico2']; ?></p>
             <p>Dirección:<?php echo $custRow['Direccion']; ?></p>
             <p>Medio de pago: EFECTIVO</p>
         </div>
         <div class="footBtn">
         <a onclick="window.location.href='../ProductList/Index.php'" class="btn btn-warning"><i
-                class="glyphicon glyphicon-menu-left"></i> Seguircomprando</a>
+                class="glyphicon glyphicon-menu-left"></i> Seguir comprando</a>
         <a href="cartAction.php?action=placeOrder" class="btn btn-success orderBtn">Realizar pedido <i
                 class="glyphicon glyphicon-menu-right"></i></a>
     </div>

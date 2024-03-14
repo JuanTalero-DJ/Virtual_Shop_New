@@ -32,15 +32,15 @@
             include_once '../../Database/DbConection.php';    
             
             $id = $_GET['id'];
-            $find = "SELECT Id, Nombre, Cantidad, Directorio , ValorUnitario, Descripcion FROM producto as a 
-            JOIN MultimediaProducto as b on a.id = b.idProducto
-            WHERE Id =$id limit 1";
+            $find = "SELECT a.IdProducto, Nombre, Cantidad, url , ValorUnitario, Descripcion FROM producto as a 
+            JOIN MultimediaProducto as b on a.idProducto = b.idProducto
+            WHERE a.IdProducto =$id limit 1";
             $conn = conexion();
             $resultado = mysqli_query($conn, $find);
             $data = mysqli_fetch_assoc($resultado);
 
 
-            $find = "SELECT  Directorio FROM MultimediaProducto
+            $find = "SELECT  url FROM MultimediaProducto
             WHERE IdProducto =$id";
             $conn = conexion();
             $imagenes = mysqli_query($conn, $find);
@@ -54,7 +54,7 @@
                 <div class="nameProductBig">
                     <h2><?php echo $data["Nombre"] ?></h2>
                 </div>
-                <div class="imageProductBig" style="background-image: url('<?php echo $data["Directorio"] ?>');"></div>
+                <div class="imageProductBig" style="background-image: url('<?php echo $data["url"] ?>');"></div>
                 <div class="descriptionProdcut">
 
                     <h3>Descripción</h3>
@@ -67,7 +67,7 @@
                     <?php
                 while ($fila = mysqli_fetch_assoc($imagenes)) {
                   ?>
-                    <div class="imageSlider" style="background-image: url('<?php echo $fila["Directorio"] ?>');">
+                    <div class="imageSlider" style="background-image: url('<?php echo $fila["url"] ?>');">
                     </div>
                     <?php
                 }
@@ -77,7 +77,7 @@
                 </div>
 
                 <div class="contentAddCarBig"><button
-                        onclick="window.location.href='../CarPay/Index.php?id=<?php echo $data['Id'] ?>'"
+                        onclick="window.location.href='../CarPay/Index.php?id=<?php echo $data['IdProducto'] ?>'"
                         class="addCar">
                         Añadir al carrito <i class="fa-solid fa-cart-plus"></i></button>
                 </div>

@@ -8,16 +8,16 @@ $db = conexion();
 if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
     if($_REQUEST['action'] == 'addToCart' && !empty($_REQUEST['id'])){
         $productID = $_REQUEST['id'];
-        $query = $db->query("SELECT * FROM producto WHERE id = ".$productID);
+        $query = $db->query("SELECT * FROM producto WHERE idProducto = ".$productID);
         $row = $query->fetch_assoc();
         $itemData = array(
-            'id' => $row['ID'],
+            'id' => $row['IdProducto'],
             'name' => $row['Nombre'],
             'price' => $row['ValorUnitario'],
             'qty' => 1
         );
         $insertItem = $cart->insert($itemData);
-        $mensaje = $insertItem? "Se añadiò el producto al carrito, para finalizar la compra ve a CARRITO":"No se añadio el prodcuto, vereifique su sesión o intentelo mas tarde ";
+        $mensaje = $insertItem? "Se añadiò el producto al carrito, para finalizar la compra ve a CARRITO":"No se añadio el producto, vereifique su sesión o intentelo mas tarde ";
         echo'<script type="text/javascript">alert("'.$mensaje.'");window.location.href="../ProductList/index.php";</script>';
 
     }elseif($_REQUEST['action'] == 'updateCartItem' && !empty($_REQUEST['id'])){
@@ -44,11 +44,11 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
     }elseif($_REQUEST['action'] == 'removeCartItem' && !empty($_REQUEST['id'])){
         $deleteItem = $cart->remove($_REQUEST['id']);
         header("Location: viewCart.php");
-    }elseif($_REQUEST['action'] == 'placeOrder' && $cart->total_items() > 0 && !empty($_SESSION['user']['ID'])){
+    }elseif($_REQUEST['action'] == 'placeOrder' && $cart->total_items() > 0 && !empty($_SESSION['user']['IdCliente'])){
 
         $cartItems = $cart->contents();
         foreach($cartItems as $item){
-            $query= $db->query("SELECT * FROM producto WHERE id = ".$item['id']);
+            $query= $db->query("SELECT * FROM producto WHERE IdProducto = ".$item['id']);
             $row = $query->fetch_assoc();
 
             if($item['qty'] > $row['Cantidad']){
@@ -72,7 +72,7 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
             $cartItems = $cart->contents();
             foreach($cartItems as $item){
 
-                $query= $db->query("SELECT * FROM producto WHERE id = ".$item['id']);
+                $query= $db->query("SELECT * FROM producto WHERE idproducto = ".$item['id']);
                 $row = $query->fetch_assoc();
                 $querys .= "INSERT INTO Item_venta (Idventa, Cantidad, IdProducto) VALUES ('".$orderID."', '".$item['qty']."', '".$item['id']."');";
                 $actualAviable = intval($row['Cantidad'])- intval($item['qty']);

@@ -39,7 +39,7 @@
           <a onclick="window.location.href='../CarPay/viewCart.php'">Carrito <i class="fa-solid fa-cart-shopping"></i></a>
         </li>
         <li>
-          <a onclick="window.location.href='../Login/DestroydSession.php'"> <?php echo $_SESSION['user']['Nombre'] ?> <i class="fa-solid fa-circle-user"></i></a>
+          <a onclick="window.location.href='../Login/DestroydSession.php'"> <?php echo $_SESSION['user']['NombreCliente'] ?> <i class="fa-solid fa-circle-user"></i></a>
         </li>
       </div>
     </ul>

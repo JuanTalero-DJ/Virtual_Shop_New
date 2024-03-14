@@ -4,7 +4,7 @@ $user = $_POST['email'];
 $pass = $_POST['pass'];
 $conn = conexion();
 $pssw = base64_encode($pass);
-$sql = "SELECT * FROM usuario  WHERE Usuario = '$user' AND Contraseña = '$pssw'";
+$sql = "SELECT * FROM cliente  WHERE email = '$user' AND Contraseña = '$pssw'";
 $resultado = mysqli_query($conn, $sql);
 $data=mysqli_fetch_assoc($resultado);
 if ($data == null) {
