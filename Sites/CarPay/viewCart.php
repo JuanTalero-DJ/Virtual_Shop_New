@@ -90,13 +90,13 @@ include_once '../../Database/DbConection.php';
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td><a onclick="window.location.href='../ProductList/Index.php'" class="btn btn-warning"><i
+                        <td><a onclick="window.location.href='payment_options.php'" class="btn btn-warning"><i
                                     class="glyphicon glyphicon-menu-left"></i> Seguir
                                 comprando</a></td>
                         <td colspan="2"></td>
                         <?php if($cart->total_items() > 0){ ?>
                         <td class="text-center"><strong>Total <?php echo '$'.$cart->total().''; ?></strong></td>
-                        <td><a href="checkout.php" class="btn btn-success btn-block">Verificar <i
+                        <td><a href="payment_options.php" class="btn btn-success btn-block">Pagar <i
                                     class="glyphicon glyphicon-menu-right"></i></a></td>
                         <?php } ?>
                     </tr>
@@ -151,4 +151,3 @@ $(document).on("click", ".buttonSearch", function() {
     var parametros = "parametro=" + parametro;
     xhr.send(parametros);
 });
-</script>
