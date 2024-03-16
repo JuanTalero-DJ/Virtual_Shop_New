@@ -126,9 +126,10 @@ $custRow = $query->fetch_assoc();
             <p>Nombre: <?php echo $custRow['NombreCliente']?></p>
             <p>Teléfono 1:<?php echo $custRow['NumTelefonico1']; ?></p>
             <p>Teléfono 2:<?php echo $custRow['NumTelefonico2']; ?></p>
-            <p>Dirección:<?php echo $custRow['Direccion']; ?></p>
-            <p>Medio de pago: EFECTIVO</p>
+            <p>Dirección:<?php echo $custRow['Direccion']; ?></p>    
+            <p>Codigo postal:<?php echo $custRow['Codigopostal']; ?></p>  
         </div>
+        
         <div class="footBtn">
         <a onclick="window.location.href='../ProductList/Index.php'" class="btn btn-warning"><i
                 class="glyphicon glyphicon-menu-left"></i> Seguir comprando</a>
@@ -136,9 +137,12 @@ $custRow = $query->fetch_assoc();
                 class="glyphicon glyphicon-menu-right"></i></a>
     </div>
 
+
     </div>
    
     </div>
 </body>
+
+
 
 </html>

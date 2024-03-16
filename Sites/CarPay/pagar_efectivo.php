@@ -17,7 +17,7 @@ if(isset($_GET['metodo']) && $_GET['metodo'] === 'efectivo') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagar en efectivo</title>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
 </head>
 
 <body>

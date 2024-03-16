@@ -63,7 +63,7 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
             }
         }
         
-        $insertOrder = $db->query("INSERT INTO pedido ( IdCliente,FechaPedido, FechaEntrega,Estado, Total) VALUES ('".$_SESSION['user']['IdCliente']."','".date("Y-m-d H:i:s")."',,'212121121' '1', '".$cart->total()."')");
+        $insertOrder = $db->query("INSERT INTO pedido ( IdCliente,FechaPedido, FechaEntrega,Estado, Total) VALUES ('".$_SESSION['user']['IdCliente']."','".date("Y-m-d H:i:s")."','".date("Y-m-d H:i:s")."','1','".$cart->total()."')");
         
         if($insertOrder){
             $orderID = $db->insert_id;
@@ -74,7 +74,7 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
 
                 $query= $db->query("SELECT * FROM producto WHERE idproducto = ".$item['id']);
                 $row = $query->fetch_assoc();
-                $querys .= "INSERT INTO Item_venta (Idventa, Cantidad, IdProducto) VALUES ('".$orderID."', '".$item['qty']."', '".$item['id']."');";
+                $querys .= "INSERT INTO itempedido (IdPedido, IdProducto, SubTotal, Cantidad) VALUES ('".$orderID."','".$item['id']."','".($item['qty']*$row['ValorUnitario'])."','".$item['qty']."');";
                 $actualAviable = intval($row['Cantidad'])- intval($item['qty']);
                 // $querys .="UPDATE Producto SET Cantidad = " . $actualAviable . " WHERE ID = '" . $item['id'] . "';";
             }
