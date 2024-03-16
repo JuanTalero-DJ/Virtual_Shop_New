@@ -35,7 +35,7 @@
 </head>
 
 <body>
-    <div class="nav">
+    <div class="NavBar">
         <?php
         include_once '../Login/Session.php';
         validateSession();

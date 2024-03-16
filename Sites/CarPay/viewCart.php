@@ -21,17 +21,11 @@ $cart = new Cart;
     <link rel="stylesheet" href="../ProductList/ProductListStyle.css" />
     <link rel="stylesheet" href="../../Utilitary/navStyle.css" />
     <style>
-    /* .container {
-        padding: 50px;
-    } */
-
+ 
     input[type="number"] {
         width: 20%;
     }
 
-    .inputSearch {
-        height: 42px;
-    }
     </style>
 
 </head>

@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+    
+    <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300&family=Jost:wght@300&family=Roboto:wght@100;300&display=swap"
-        rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/2943493a50.js" crossorigin="anonymous"></script>
+    href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300&family=Jost:wght@300&family=Roboto:wght@100;300&display=swap"
+    rel="stylesheet" />
     <link rel="stylesheet" href="../../Styles/style.css" />
     <link rel="stylesheet" href="ProductStyle.css" />
     <link rel="stylesheet" href="../ProductList/ProductListStyle.css" />
     <link rel="stylesheet" href="../../Utilitary/navStyle.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="../../Utilitary/searchProduct.js" type="text/javascript"></script>
+    <script src="https://kit.fontawesome.com/2943493a50.js" crossorigin="anonymous"></script>
     <title>Productos</title>
 </head>
 
 <body>
 <?php
+        include_once '../ProductList/GetProduct.php';
         include_once '../Login/Session.php';
         validateSession();
     ?>
@@ -59,7 +62,7 @@
 
                     <h3>Descripción</h3>
                     <p><?php echo $data["Descripcion"] ?></p>
-                    <p class="price">$ <?php echo number_format($data["ValorUnitario"], 0);?></p>
+                    <p class="price">$ <?php echo number_format($data["ValorUnitario"], 2);?></p>
                     <p class="available">Cantidad disponible <?php echo $data["Cantidad"] ?></p>
                 </div>
 
@@ -88,35 +91,10 @@
 
 
 </html>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script>
 
-$(document).on("click", ".buttonSearch", function() {
-    var parametro = $(".inputSearch").val();
-    var xhr = new XMLHttpRequest();
-    xhr.open(
-        "GET",
-        "../ProductList/GetProduct.php?parametro=" + parametro,
-        true
-    );
-    xhr.setRequestHeader(
-        "Content-type",
-        "application/x-www-form-urlencoded"
-    );
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            var respuesta = xhr.responseText;
-            console.log(respuesta);
-            $("#contenido").empty();
-            $("#contenido").append(respuesta);
-        }
-    };
-    var parametros = "parametro=" + parametro;
-    xhr.send(parametros);
-});
-
 $(".imageSlider")
-    .hover(function() {
+    .hover(function() { 
 
             let element = $(this);
             let newImge = element[0].style.backgroundImage;
