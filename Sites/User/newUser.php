@@ -22,10 +22,11 @@
         $find = "SELECT 'NumIdentifiacion' , 'Email' FROM Cliente
         WHERE NumIdentifiacion='$numeroIdentificacion' or Email= '$correo'";
         $result = mysqli_query($conn, $find);
-        $data=mysqli_fetch_assoc($result);
-
-        if($data != null){
-
+		
+        if($result-> num_rows > 0){
+			
+			$data=mysqli_fetch_assoc($result);
+			
             if ($data["NumIdentifiacion"] = $numeroIdentificacion){
                 $mensaje = "El usuario con numero de identificacion $numeroIdentificacion, ya existe en el sistema";
             }
