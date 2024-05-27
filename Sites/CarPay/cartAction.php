@@ -48,7 +48,11 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
 
         $cartItems = $cart->contents();
         foreach($cartItems as $item){
-            $query= $db->query("SELECT * FROM producto WHERE IdProducto = ".$item['id']);
+            $query= $db->query("SELECT (a.Cantidad- SUM(b.Cantidad)) as Cantidad, a.Nombre FROM producto as a 
+             Join itemPedido as b on a.IdProducto = b.IdProducto 
+             Join pedido as c on b.idpedido = c.idpedido 
+             WHERE a.IdProducto = ".$item['id']." and c.Estado = '1'"
+            );
             $row = $query->fetch_assoc();
 
             if($item['qty'] > $row['Cantidad']){

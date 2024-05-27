@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../../Utilitary/navStyle.css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script src="../../Utilitary/searchProduct.js" type="text/javascript"></script>
+    <script src="../User/saveSearch/saveSearch.js" type="text/javascript"></script>
     <title>Productos</title>
 </head>
 

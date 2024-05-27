@@ -1,6 +1,6 @@
 $(document).on("click", ".buttonSearch", function() {
-    var parametro = $(".inputSearch").val();
-    var xhr = new XMLHttpRequest();
+    let parametro = $(".inputSearch").val();
+    let xhr = new XMLHttpRequest();
     xhr.open(
         "GET",
         "../ProductList/getProduct.php?parametro=" + parametro,
@@ -12,12 +12,13 @@ $(document).on("click", ".buttonSearch", function() {
     );
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            var respuesta = xhr.responseText;
+            let respuesta = xhr.responseText;
             console.log(respuesta);
-            $("#contenido").empty();
+            $("#contenido").empty();    
             $("#contenido").append(respuesta);
+            sendSaveSearch(parametro, null)
         }
     };
-    var parametros = "parametro=" + parametro;
+    let parametros = "parametro=" + parametro;
     xhr.send(parametros);
 });

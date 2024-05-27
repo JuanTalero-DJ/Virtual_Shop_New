@@ -21,11 +21,9 @@ $cart = new Cart;
     <link rel="stylesheet" href="../ProductList/ProductListStyle.css" />
     <link rel="stylesheet" href="../../Utilitary/navStyle.css" />
     <style>
- 
-    input[type="number"] {
-        width: 20%;
-    }
-
+        input[type="number"] {
+            width: 20%;
+        }
     </style>
 
 </head>
@@ -33,13 +31,13 @@ $cart = new Cart;
 <body>
     <?php
 
-include_once '../../Database/DbConection.php';    
+    include_once '../../Database/DbConection.php';
 
-?>
+    ?>
     <div class="nav">
         <?php
-        include_once '../../Utilitary/nav.php';   
-    ?>
+        include_once '../../Utilitary/nav.php';
+        ?>
     </div>
     <div id="contenido">
 
@@ -58,40 +56,49 @@ include_once '../../Database/DbConection.php';
                 </thead>
                 <tbody>
                     <?php
-        if($cart->total_items() > 0){
-            //get cart items from session
-            $cartItems = $cart->contents();
-            foreach($cartItems as $item){
-        ?>
-                    <tr>
-                        <td><?php echo $item["name"]; ?></td>
-                        <td><?php echo '$'.$item["price"].''; ?></td>
-                        <td><input type="number" class="form-control text-center" value="<?php echo $item["qty"]; ?>"
-                                onchange="updateCartItem(this, '<?php echo $item["rowid"]; ?>')" ></td>
-                        <td><?php echo '$'.$item["subtotal"].''; ?></td>
-                        <td>
-                            <a href="cartAction.php?action=removeCartItem&id=<?php echo $item["rowid"]; ?>"
-                                class="btn btn-danger" onclick="return confirm('Estas seguro?')"><i
-                                    class="glyphicon glyphicon-trash"></i></a>
-                        </td>
-                    </tr>
-                    <?php } }else{ ?>
-                    <tr>
-                        <td colspan="5">
-                            <p>Tu carrito esta vacío.....</p>
-                        </td>
+                    if ($cart->total_items() > 0) {
+                        //get cart items from session
+                        $cartItems = $cart->contents();
+                        foreach ($cartItems as $item) {
+                            ?>
+                            <tr>
+                                <td>
+                                    <?php echo $item["name"]; ?>
+                                </td>
+                                <td>
+                                    <?php echo '$' . $item["price"] . ''; ?>
+                                </td>
+                                <td><input type="number" class="form-control text-center" value="<?php echo $item["qty"]; ?>"
+                                        onchange="updateCartItem(this, '<?php echo $item["rowid"]; ?>')"></td>
+                                <td>
+                                    <?php echo '$' . number_format($item["subtotal"],2) . ''; ?>
+                                </td>
+                                <td>
+                                    <a href="cartAction.php?action=removeCartItem&id=<?php echo $item["rowid"]; ?>"
+                                        class="btn btn-danger" onclick="return confirm('Estas seguro?')"><i
+                                            class="glyphicon glyphicon-trash"></i></a>
+                                </td>
+                            </tr>
+                        <?php }
+                    } else { ?>
+                        <tr>
+                            <td colspan="5">
+                                <p>Tu carrito esta vacío.....</p>
+                            </td>
                         <?php } ?>
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td><a onclick="window.location.href='checkout.php'" class="btn btn-warning"><i
+                        <td><a onclick="window.location.href='../ProductList/Index.php'" class="btn btn-warning"><i
                                     class="glyphicon glyphicon-menu-left"></i> Seguir
                                 comprando</a></td>
                         <td colspan="2"></td>
-                        <?php if($cart->total_items() > 0){ ?>
-                        <td class="text-center"><strong>Total <?php echo '$'.$cart->total().''; ?></strong></td>
-                        <td><a href="checkout.php" class="btn btn-success btn-block">Pagar <i
-                                    class="glyphicon glyphicon-menu-right"></i></a></td>
+                        <?php if ($cart->total_items() > 0) { ?>
+                            <td class="text-center"><strong>Total
+                                    <?php echo '$' . $cart->total() . ''; ?>
+                                </strong></td>
+                            <td><a href="checkout.php" class="btn btn-success btn-block">Confirmar pedido <i
+                                        class="glyphicon glyphicon-menu-right"></i></a></td>
                         <?php } ?>
                     </tr>
                 </tfoot>
@@ -103,45 +110,45 @@ include_once '../../Database/DbConection.php';
 </html>
 
 <script>
-function updateCartItem(obj, id) {
-    
-    $.get("cartAction.php", {
-        action: "updateCartItem",
-        id: id,
-        qty: obj.value
-    }, function(data) {
-        if (data == 'ok') {
-            location.reload();
-        } 
-        else {
+    function updateCartItem(obj, id) {
 
-            console.log(id)
-            alert(data);
-        }
+        $.get("cartAction.php", {
+            action: "updateCartItem",
+            id: id,
+            qty: obj.value
+        }, function (data) {
+            if (data == 'ok') {
+                location.reload();
+            }
+            else {
+
+                console.log(id)
+                alert(data);
+            }
+        });
+    }
+
+
+    $(document).on("click", ".buttonSearch", function () {
+        var parametro = $(".inputSearch").val();
+        var xhr = new XMLHttpRequest();
+        xhr.open(
+            "GET",
+            "../ProductList/GetProduct.php?parametro=" + parametro,
+            true
+        );
+        xhr.setRequestHeader(
+            "Content-type",
+            "application/x-www-form-urlencoded"
+        );
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var respuesta = xhr.responseText;
+                console.log(respuesta);
+                $("#contenido").empty();
+                $("#contenido").append(respuesta);
+            }
+        };
+        var parametros = "parametro=" + parametro;
+        xhr.send(parametros);
     });
-}
-
-
-$(document).on("click", ".buttonSearch", function() {
-    var parametro = $(".inputSearch").val();
-    var xhr = new XMLHttpRequest();
-    xhr.open(
-        "GET",
-        "../ProductList/GetProduct.php?parametro=" + parametro,
-        true
-    );
-    xhr.setRequestHeader(
-        "Content-type",
-        "application/x-www-form-urlencoded"
-    );
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            var respuesta = xhr.responseText;
-            console.log(respuesta);
-            $("#contenido").empty();
-            $("#contenido").append(respuesta);
-        }
-    };
-    var parametros = "parametro=" + parametro;
-    xhr.send(parametros);
-});
