@@ -30,7 +30,7 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
         $row = $query->fetch_assoc();
         
         if(intval($quantity) > intval($row['Cantidad'])){
-            echo 'Los sentimos, la cantidad solicitada del producto '. $row['Nombre'] . ' supéra la disponibilidad. Cambia la cantidad en el carrito e intenta de nuevo';
+            echo 'Lo sentimos, la cantidad solicitada del producto '. $row['Nombre'] . ' supéra la disponibilidad. Cambia la cantidad en el carrito e intenta de nuevo';
         }
 
         $itemData = array(
@@ -38,6 +38,8 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
             'qty' => $_REQUEST['qty']
         );
         $updateItem = $cart->update($itemData);
+
+        
         
         echo $updateItem?'ok':$err;
         die;
@@ -76,7 +78,8 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
                 $row = $query->fetch_assoc();
                 $querys .= "INSERT INTO itempedido (IdPedido, IdProducto, SubTotal, Cantidad) VALUES ('".$orderID."','".$item['id']."','".($item['qty']*$row['ValorUnitario'])."','".$item['qty']."');";
                 $actualAviable = intval($row['Cantidad'])- intval($item['qty']);
-                // $querys .="UPDATE Producto SET Cantidad = " . $actualAviable . " WHERE ID = '" . $item['id'] . "';";
+
+
             }
             // insert order items into database and update data
     
