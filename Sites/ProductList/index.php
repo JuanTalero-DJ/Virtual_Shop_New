@@ -21,21 +21,27 @@
 
 <body>
     <?php
-        include_once 'GetProduct.php';
-        include_once '../Login/Session.php';
-        validateSession();
+    include_once 'GetProduct.php';
+    include_once '../Login/Session.php';
+    validateSession();
     ?>
     <div class="nav">
         <?php
-        include_once '../../Utilitary/nav.php';   
-    ?>
+        include_once '../../Utilitary/nav.php';
+        ?>
     </div>
 
 
     <div id="contenido">
         <?php
-          echo listProduct("");
-    ?>
+        echo listProduct("Basado en tus compras", 1);
+        ?>
+         <?php
+        echo listProduct("Sigue buscando", 2);
+        ?>
+         <?php
+        echo listProduct("Articulos que te puden interesar ", 3);
+        ?>
     </div>
 </body>
 
